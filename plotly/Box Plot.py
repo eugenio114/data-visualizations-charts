@@ -31,9 +31,11 @@ def football_results_df(country, year):
     country.lower()
     countries = {'germany': '/D1', 'spain': '/SP1', 'england': '/E0', 'italy': '/I1'}
     years = ['2021', '1920', '1819', '1718']
-    if country in countries.keys() and year in years:
-        df = pd.read_csv(f'https://www.football-data.co.uk/mmz4281/{year}{countries.get(country)}.csv')
-        return df
+    if country in countries and year in years:
+        return pd.read_csv(
+            f'https://www.football-data.co.uk/mmz4281/{year}{countries.get(country)}.csv'
+        )
+
     else:
         country = input(f"Please select a country from the following list: {countries.keys()}")
 
@@ -44,9 +46,7 @@ def football_results_df(country, year):
 #_____________________________________________________________________________________________________________________
 
 def match_results(result):
-    if result == 'A':
-        return "Away Team Win"
-    elif result == 'H':
+    if result in ['A', 'H']:
         return "Away Team Win"
     elif result == 'D':
         return "Draw"
